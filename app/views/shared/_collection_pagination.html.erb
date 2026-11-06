@@ -1,0 +1,9 @@
+<% if total_pages > 1 %>
+  <nav class="pagination-nav" aria-label="Trail pages">
+    <span>Page <%= page %> of <%= total_pages %> · <%= pluralize(total_count, "trail") %></span>
+    <div class="d-flex gap-2">
+      <% if page > 1 %><%= link_to "← Previous", trails_path(request.query_parameters.merge(page: page - 1)), class: "btn btn-outline-primary btn-sm" %><% end %>
+      <% if page < total_pages %><%= link_to "Next →", trails_path(request.query_parameters.merge(page: page + 1)), class: "btn btn-outline-primary btn-sm" %><% end %>
+    </div>
+  </nav>
+<% end %>

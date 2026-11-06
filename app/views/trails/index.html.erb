@@ -1,0 +1,21 @@
+<% page_heading("Find your next trail", subtitle: "Local paths, big views, and room to breathe — find the route that fits your day.") %>
+<section class="container page-section">
+  <div class="filter-panel">
+    <%= form_with url: trails_path, method: :get, class: "row g-3 align-items-end", role: "search" do |form| %>
+      <div class="col-12 col-lg-5">
+        <%= form.label :q, "Search trails and parks", class: "form-label" %>
+        <%= form.search_field :q, value: @query, placeholder: "Try a trail, park, or keyword", class: "form-control" %>
+      </div>
+      <div class="col-6 col-lg-3"><%= form.label :region_id, "Region", class: "form-label" %><%= form.collection_select :region_id, @regions, :id, :name, { include_blank: "All Ontario", selected: @region_id }, class: "form-select" %></div>
+      <div class="col-6 col-lg-2"><%= form.label :tag_id, "Trail feature", class: "form-label" %><%= form.collection_select :tag_id, @tags, :id, :name, { include_blank: "Any feature", selected: @tag_id }, class: "form-select" %></div>
+      <div class="col-12 col-lg-2 d-flex gap-2"><%= form.submit "Search", class: "btn btn-primary flex-grow-1" %><%= link_to "Clear", trails_path, class: "btn btn-outline-secondary" %></div>
+    <% end %>
+  </div>
+  <div class="collection-heading">
+    <div><p class="eyebrow">THE TRAIL LIBRARY</p><h2><%= pluralize(@total_count, "trail") %> to explore</h2></div>
+    <%= link_to "Browse all regions →", regions_path, class: "text-link" %>
+  </div>
+  <%= render "shared/trail_grid", trails: @trails %>
+  <%= render "shared/collection_pagination", page: @page, total_pages: @total_pages, total_count: @total_count %>
+</section>
+<section class="container page-section"><%= render "shared/map", heading: "Trails on the map", locations: @map_markers %></section>
