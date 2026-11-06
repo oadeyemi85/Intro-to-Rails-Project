@@ -1,0 +1,6 @@
+<% page_heading("Find trails by feature", subtitle: "From waterfalls to wildlife, follow the details that make a path memorable.") %>
+<section class="container page-section">
+  <div class="card-grid">
+    <% @tags.each do |tag| %><article class="place-card"><p class="eyebrow"><%= pluralize(tag.trails.size, "matching trail") %></p><h2><%= link_to tag.name, tag_path(tag) %></h2><p><%= tag.description %></p></article><% end %>
+  </div>
+</section>

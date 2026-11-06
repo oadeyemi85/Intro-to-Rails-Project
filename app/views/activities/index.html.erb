@@ -1,0 +1,6 @@
+<% page_heading("Choose your kind of day", subtitle: "Browse the trails that match the way you like to spend time outside.") %>
+<section class="container page-section">
+  <div class="card-grid">
+    <% @activities.each do |activity| %><article class="place-card"><p class="eyebrow"><%= pluralize(activity.trails.size, "matching trail") %></p><h2><%= link_to activity.name, activity_path(activity) %></h2><p><%= activity.description %></p></article><% end %>
+  </div>
+</section>
