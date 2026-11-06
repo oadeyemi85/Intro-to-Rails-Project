@@ -1,0 +1,16 @@
+region,park,type,latitude,longitude,website,source_name
+North Bay,Algonquin Provincial Park,Provincial park,45.8372,-78.3790,https://www.ontarioparks.ca/park/algonquin,Ontario Parks
+Tobermory,Bruce Peninsula National Park,National park,45.2100,-81.5100,https://parks.canada.ca/pn-np/on/bruce,Parks Canada
+Tobermory,Fathom Five National Marine Park,National marine park,45.2500,-81.6500,https://parks.canada.ca/amnc-nmca/on/fathomfive,Parks Canada
+Kingston,Frontenac Provincial Park,Provincial park,44.5000,-76.5500,https://www.ontarioparks.ca/park/frontenac,Ontario Parks
+Kingston,Presqu'ile Provincial Park,Provincial park,44.0000,-77.7200,https://www.ontarioparks.ca/park/presquile,Ontario Parks
+Kingston,Thousand Islands National Park,National park,44.3500,-76.0000,https://parks.canada.ca/pn-np/on/1000,Parks Canada
+Toronto,High Park,Urban park,43.6465,-79.4637,https://www.toronto.ca/explore-enjoy/parks-gardens-beaches/high-park/,City of Toronto
+Toronto,Rouge National Urban Park,National urban park,43.8200,-79.1800,https://parks.canada.ca/pn-np/on/rouge,Parks Canada
+Kingston,Cataraqui Trail Park,Conservation area,44.2700,-76.5600,https://www.frontenacarchbiosphere.ca/,Cataraqui Trail
+Sudbury,Killarney Provincial Park,Provincial park,46.0000,-81.4000,https://www.ontarioparks.ca/park/killarney,Ontario Parks
+Sudbury,Point Grondine Park,Conservation area,45.8300,-80.6000,https://www.pointgrondinepark.com/,Point Grondine Park
+Ottawa,Calabogie Peaks,Conservation area,45.3000,-76.7500,https://www.calabogie.com/,Calabogie Peaks
+Ottawa,Ottawa River Pathway,Urban trail park,45.4200,-75.7200,https://ncc-ccn.gc.ca/places/ottawa-river-pathway,National Capital Commission
+London,Point Pelee National Park,National park,41.9600,-82.5200,https://parks.canada.ca/pn-np/on/pelee,Parks Canada
+London,Pinery Provincial Park,Provincial park,43.2500,-81.8300,https://www.ontarioparks.ca/park/pinery,Ontario Parks
