@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for(:title) || "Trail Atlas | Find your next Ontario adventure" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Explore Ontario parks and trails, compare routes, and find your next outdoor adventure.">
+    <meta name="theme-color" content="#153d32">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= yield :head %>
+    <% if @map_markers.present? %>
+      <%= tag.link rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css", crossorigin: "anonymous" %>
+    <% end %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg container py-3" aria-label="Main navigation">
+        <%= link_to root_path, class: "navbar-brand brand-mark" do %>
+          <span class="brand-icon" aria-hidden="true">✳</span> Trail Atlas
+        <% end %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-menu">
+          <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <%= link_to "Trails", trails_path, class: "nav-link #{'active' if controller_name == 'trails'}" %>
+            <%= link_to "Parks", parks_path, class: "nav-link #{'active' if controller_name == 'parks'}" %>
+            <%= link_to "Regions", regions_path, class: "nav-link #{'active' if controller_name == 'regions'}" %>
+            <%= link_to "About", about_path, class: "nav-link #{'active' if controller_name == 'pages'}" %>
+            <%= link_to "Explore trails", trails_path, class: "btn btn-primary btn-sm ms-lg-2" %>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main id="main-content">
+      <% if content_for?(:page_heading) %>
+        <section class="page-heading container">
+          <p class="eyebrow">TRAIL ATLAS · ONTARIO, CANADA</p>
+          <h1><%= yield :page_heading %></h1>
+          <% if content_for?(:page_subtitle) %><p class="lead"><%= yield :page_subtitle %></p><% end %>
+        </section>
+      <% end %>
+      <%= yield %>
+    </main>
+    <footer class="site-footer">
+      <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+        <span><strong>Trail Atlas</strong> · A field guide to Ontario outdoors.</span>
+        <span>Respect the land. Leave no trace.</span>
+      </div>
+    </footer>
+  </body>
+</html>
