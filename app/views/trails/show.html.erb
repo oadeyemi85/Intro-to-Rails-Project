@@ -1,0 +1,38 @@
+<% page_heading(@trail.name, subtitle: @trail.park.name) %>
+<section class="container page-section">
+  <div class="detail-layout">
+    <article class="detail-main">
+      <div class="detail-meta">
+        <span class="difficulty-badge difficulty-<%= @trail.difficulty.downcase %>"><%= @trail.difficulty %></span>
+        <span><%= number_with_precision(@trail.distance_km, precision: 1) %> km</span>
+        <span><%= number_with_delimiter(@trail.elevation_gain_m) %> m elevation gain</span>
+        <span><%= @trail.surface %> surface</span>
+      </div>
+      <p class="detail-description"><%= @trail.description %></p>
+      <div class="detail-block">
+        <h2>Trail features</h2>
+        <% if @trail.tags.any? %><div class="tag-list"><% @trail.tags.each do |tag| %><%= link_to tag.name, tag_path(tag), class: "tag-pill" %><% end %></div><% else %><p>No feature tags have been recorded.</p><% end %>
+      </div>
+      <div class="detail-block">
+        <h2>Ways to enjoy it</h2>
+        <% if @trail.activities.any? %><div class="tag-list"><% @trail.activities.each do |activity| %><%= link_to activity.name, activity_path(activity), class: "tag-pill" %><% end %></div><% else %><p>No activities have been recorded.</p><% end %>
+      </div>
+      <div class="detail-block">
+        <h2>Route coordinates</h2>
+        <p><%= number_with_precision(@trail.latitude, precision: 4) %>, <%= number_with_precision(@trail.longitude, precision: 4) %></p>
+        <p class="text-muted">Demonstration coordinates; confirm route details with the park operator.</p>
+      </div>
+      <%= render "shared/map", heading: "Trail location", locations: @map_markers %>
+    </article>
+    <aside class="detail-aside">
+      <p class="eyebrow">ON THE MAP</p>
+      <h2><%= link_to @trail.park.name, park_path(@trail.park) %></h2>
+      <p><%= link_to @trail.region.name, region_path(@trail.region) %></p>
+      <p><%= @trail.park.description %></p>
+      <% if @trail.park.website_url.present? %><%= link_to "Official park details ↗", @trail.park.website_url, class: "text-link", target: "_blank", rel: "noopener noreferrer" %><% end %>
+      <hr>
+      <p class="eyebrow">DATA SOURCE</p><p><%= @trail.source_name %></p>
+    </aside>
+  </div>
+  <%= link_to "← Back to trails", trails_path, class: "text-link back-link" %>
+</section>
