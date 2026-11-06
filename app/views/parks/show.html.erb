@@ -1,0 +1,18 @@
+<% page_heading(@park.name, subtitle: @park.park_type) %>
+<section class="container page-section">
+  <div class="detail-layout">
+    <article class="detail-main">
+      <p class="detail-description"><%= @park.description %></p>
+      <p><strong>Region:</strong> <%= link_to @park.region.name, region_path(@park.region) %></p>
+      <p><strong>Access:</strong> <%= @park.accessible ? "Accessible facilities reported" : "Check the park's official site for accessibility details" %></p>
+      <% if @park.website_url.present? %><p><%= link_to "Visit the official park website ↗", @park.website_url, class: "text-link", target: "_blank", rel: "noopener noreferrer" %></p><% end %>
+      <p><strong>Coordinates:</strong> <%= number_with_precision(@park.latitude, precision: 4) %>, <%= number_with_precision(@park.longitude, precision: 4) %></p>
+      <p><strong>Data source:</strong> <%= @park.source_name %></p>
+      <%= render "shared/map", heading: "Park location", locations: @map_markers %>
+      <div class="collection-heading"><div><p class="eyebrow">ROUTES IN THIS PARK</p><h2><%= pluralize(@park.trails.size, "trail") %></h2></div></div>
+      <%= render "shared/trail_grid", trails: @park.trails.sort_by(&:name) %>
+    </article>
+    <aside class="detail-aside"><p class="eyebrow">IN THIS REGION</p><h2><%= link_to @park.region.name, region_path(@park.region) %></h2><p>Explore the other parks and routes in this part of Ontario.</p><%= link_to "See region →", region_path(@park.region), class: "text-link" %></aside>
+  </div>
+  <%= link_to "← All parks", parks_path, class: "text-link back-link" %>
+</section>

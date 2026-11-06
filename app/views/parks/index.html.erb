@@ -1,0 +1,21 @@
+<% page_heading("Parks worth the detour", subtitle: "Discover Ontario's protected places and the trails they hold.") %>
+<section class="container page-section">
+  <div class="filter-panel compact-filter">
+    <%= form_with url: parks_path, method: :get, class: "row g-3 align-items-end" do |form| %>
+      <div class="col-12 col-md-8"><%= form.label :region_id, "Choose a region", class: "form-label" %><%= form.collection_select :region_id, @regions, :id, :name, { include_blank: "All regions", selected: @region_id }, class: "form-select" %></div>
+      <div class="col-12 col-md-4"><%= form.submit "Filter parks", class: "btn btn-primary" %> <%= link_to "Clear", parks_path, class: "btn btn-outline-secondary" %></div>
+    <% end %>
+  </div>
+  <div class="card-grid">
+    <% @parks.each do |park| %>
+      <article class="place-card">
+        <p class="eyebrow"><%= park.park_type %></p>
+        <h2><%= link_to park.name, park_path(park) %></h2>
+        <p><%= truncate(park.description, length: 130) %></p>
+        <div class="place-card-meta"><%= link_to park.region.name, region_path(park.region) %> · <%= pluralize(park.trails.size, "trail") %></div>
+      </article>
+    <% end %>
+  </div>
+  <% if @parks.empty? %><div class="empty-state"><h2>No parks in that region yet</h2><%= link_to "Browse all parks", parks_path, class: "btn btn-outline-primary" %></div><% end %>
+</section>
+<section class="container page-section"><%= render "shared/map", heading: "Parks across Ontario", locations: @map_markers %></section>
