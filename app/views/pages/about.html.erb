@@ -1,0 +1,30 @@
+<% page_heading("A little more about the atlas", subtitle: "Built for curious walkers, weekend wanderers, and anyone who feels better outside.") %>
+<section class="container page-section about-layout">
+  <article class="about-copy">
+    <p class="eyebrow">THE IDEA</p>
+    <h2>Good trails make a good day.</h2>
+    <p>Trail Atlas brings together Ontario regions, parks, and routes so you can find a place that fits the kind of day you have in mind. Search by name, narrow results to a region or trail feature, and follow the links from each trail back to its park and region.</p>
+    <h2>Where the data comes from</h2>
+    <ul class="source-list">
+      <li><strong>GeoNames geographical names database</strong> — the regional reference records in <code>db/data/regions.csv</code>; used as a curated Ontario location snapshot. <a href="https://www.geonames.org/">Source and terms</a>.</li>
+      <li><strong>Parks Canada</strong> — national park and national marine area records, with official park links, in <code>db/data/parks.csv</code>. <a href="https://parks.canada.ca/">Parks Canada</a>.</li>
+      <li><strong>Ontario Parks and local park operators</strong> — provincial and local park listings, with official links, in the same park snapshot. <a href="https://www.ontarioparks.ca/">Ontario Parks</a>.</li>
+      <li><strong>Faker</strong> — reproducible example trail descriptions and route details created locally by <code>db/seeds.rb</code>; these are demonstration records, not official trail conditions.</li>
+      <li><strong>OpenStreetMap</strong> — map tiles are loaded when viewing the map; tiles are not stored in this app's database. <a href="https://www.openstreetmap.org/copyright">Map attribution</a>.</li>
+    </ul>
+    <p>Park and region coordinates are illustrative map points. Always check the linked park operator for current hours, closures, accessibility, and trail conditions before you travel.</p>
+  </article>
+  <aside class="schema-card">
+    <p class="eyebrow">HOW THE DATA CONNECTS</p>
+    <h2>Our data model</h2>
+    <ol class="schema-list">
+      <li><strong>Region</strong><span>has many parks</span></li>
+      <li><strong>Park</strong><span>belongs to a region; has many trails</span></li>
+      <li><strong>Trail</strong><span>belongs to a park; links to many tags and activities</span></li>
+      <li><strong>Tag</strong><span>describes trail features, like waterfalls or shade</span></li>
+      <li><strong>Activity</strong><span>describes trail uses, like hiking or birdwatching</span></li>
+    </ol>
+    <p class="schema-note">Trails ↔ Tags and Trails ↔ Activities are many-to-many relationships through join tables.</p>
+    <%= link_to "Explore the data →", trails_path, class: "btn btn-primary" %>
+  </aside>
+</section>
