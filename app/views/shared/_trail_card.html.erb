@@ -1,0 +1,15 @@
+<article class="trail-card">
+  <%= link_to trail_path(trail), class: "card-link" do %>
+    <div class="trail-card-top">
+      <span class="difficulty-badge difficulty-<%= trail.difficulty.downcase %>"><%= trail.difficulty %></span>
+      <span class="trail-distance"><%= number_with_precision(trail.distance_km, precision: 1) %> km</span>
+    </div>
+    <h3><%= trail.name %></h3>
+    <p class="trail-card-park"><%= trail.park.name %> <span aria-hidden="true">·</span> <%= trail.park.region.name %></p>
+    <p class="trail-card-description"><%= truncate(trail.description, length: 118) %></p>
+    <div class="tag-list">
+      <% trail.tags.each do |tag| %><span class="tag-pill"><%= tag.name %></span><% end %>
+    </div>
+    <span class="card-arrow" aria-hidden="true">↗</span>
+  <% end %>
+</article>

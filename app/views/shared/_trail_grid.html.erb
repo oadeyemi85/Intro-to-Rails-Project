@@ -1,0 +1,11 @@
+<% if trails.any? %>
+  <div class="trail-grid">
+    <% trails.each do |trail| %><%= render "shared/trail_card", trail: trail %><% end %>
+  </div>
+<% else %>
+  <div class="empty-state">
+    <h2>No trails found</h2>
+    <p>Try broadening your search or clearing the selected filters.</p>
+    <%= link_to "See all trails", trails_path, class: "btn btn-outline-primary" %>
+  </div>
+<% end %>
