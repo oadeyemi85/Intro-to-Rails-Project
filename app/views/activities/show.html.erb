@@ -1,0 +1,2 @@
+<% page_heading(@activity.name, subtitle: @activity.description) %>
+<section class="container page-section"><%= render "shared/trail_grid", trails: @trails %><%= link_to "← All activities", activities_path, class: "text-link back-link" %></section>
