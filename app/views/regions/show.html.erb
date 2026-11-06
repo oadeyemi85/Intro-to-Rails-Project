@@ -1,0 +1,24 @@
+<% page_heading(@region.name, subtitle: "#{@region.province}, #{@region.country}") %>
+<section class="container page-section">
+  <div class="detail-meta region-meta">
+    <span><strong>Province:</strong> <%= @region.province %></span>
+    <span><strong>Country:</strong> <%= @region.country %></span>
+    <span><strong>Coordinates:</strong> <%= number_with_precision(@region.latitude, precision: 4) %>, <%= number_with_precision(@region.longitude, precision: 4) %></span>
+    <span><strong>Data source:</strong> <%= @region.source_name %></span>
+  </div>
+  <%= render "shared/map", heading: "Parks in #{@region.name}", locations: @map_markers %>
+  <div class="collection-heading"><div><p class="eyebrow">YOUR LOCAL GUIDE</p><h2><%= pluralize(@parks.size, "park") %> to discover</h2></div><%= link_to "Search trails →", trails_path(region_id: @region.id), class: "text-link" %></div>
+  <% if @parks.any? %>
+    <div class="card-grid">
+      <% @parks.each do |park| %>
+        <article class="place-card">
+          <p class="eyebrow"><%= park.park_type %></p>
+          <h2><%= link_to park.name, park_path(park) %></h2>
+          <p><%= truncate(park.description, length: 145) %></p>
+          <div class="place-card-meta"><%= pluralize(park.trails.size, "trail") %></div>
+        </article>
+      <% end %>
+    </div>
+  <% else %><div class="empty-state">No parks have been added to this region yet.</div><% end %>
+  <%= link_to "← All regions", regions_path, class: "text-link back-link" %>
+</section>

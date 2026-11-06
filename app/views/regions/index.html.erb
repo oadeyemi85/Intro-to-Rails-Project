@@ -1,0 +1,14 @@
+<% page_heading("Explore by region", subtitle: "Choose an Ontario basecamp and see the parks, paths, and landscapes nearby.") %>
+<section class="container page-section">
+  <div class="card-grid">
+    <% @regions.each do |region| %>
+      <article class="place-card">
+        <p class="eyebrow"><%= region.province %>, <%= region.country %></p>
+        <h2><%= link_to region.name, region_path(region) %></h2>
+        <p>Find a new route among this region's protected areas and local parks.</p>
+        <div class="place-card-meta"><%= pluralize(region.parks.size, "park") %> · <%= pluralize(region.trails.size, "trail") %></div>
+      </article>
+    <% end %>
+  </div>
+</section>
+<section class="container page-section"><%= render "shared/map", heading: "Ontario regions", locations: @map_markers %></section>
