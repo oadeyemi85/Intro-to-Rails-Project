@@ -1,0 +1,12 @@
+<section class="map-section" aria-label="<%= heading %> map">
+  <div class="section-heading">
+    <div><p class="eyebrow">GET YOUR BEARINGS</p><h2><%= heading %></h2></div>
+    <span class="map-key"><span class="map-dot"></span> <%= pluralize(locations.size, "location") %></span>
+  </div>
+  <% if locations.any? %>
+    <div class="atlas-map" data-controller="map" data-map-markers-value="<%= locations.to_json %>" role="region" aria-label="<%= heading %> interactive map"></div>
+    <p class="map-credit">Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a></p>
+  <% else %>
+    <p class="empty-state">There are no mapped locations in this collection yet.</p>
+  <% end %>
+</section>
